@@ -1,11 +1,28 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import { useState } from 'react';
+import {StyleSheet, Text, View, Button, TouchableOpacity, Alert } from 'react-native';
 function GoalItem(props) {
+    const [showButtons, setShowButtons] = useState(false); 
+    const confirmDeleteHandler = () => {
+        Alert.alert(
+            'Delete Goal', 'Do you really want to delete this goal?',
+            [
+                {text: 'No', style: 'cancel'},
+                {text: 'Yes', style: 'destructive', onPress: props.onRemoveItem.bind(this, props.id)},
+            ]);
+    }
     return (
-        <Pressable onPress={props.onRemoveItem.bind(this, props.id)} style={({pressed}) => pressed && styles.itemPressed}>
+        <TouchableOpacity onPress={() => setShowButtons(!showButtons)}>
             <View style={styles.GoalItem}>
                 <Text>{props.text}</Text>
+                {showButtons && 
+                    <View style={styles.buttonContainer}>
+                        <Button title='Delete goal'
+                         onPress={confirmDeleteHandler} 
+                        />
+                    </View>
+                }
             </View>
-        </Pressable>
+        </TouchableOpacity>
     );
 }
 
@@ -22,5 +39,9 @@ const styles = StyleSheet.create({
     },
     itemPressed:{
         opacity: 0.4,
-    }
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
 });

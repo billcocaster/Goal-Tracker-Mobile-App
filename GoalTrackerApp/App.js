@@ -35,7 +35,11 @@ export default function App() {
       <View>
         <FlatList data={goals} renderItem={(itemData) => {
             return(
-                <GoalItem text = {itemData.item.text} id ={itemData.item.id} onRemoveItem = {removeGoalHandler}/>
+                <GoalItem 
+                  text = {itemData.item.text} 
+                  id ={itemData.item.id} 
+                  onRemoveItem = {removeGoalHandler}
+                />
             );
           }}
           keyExtractor={(item, index) => {
