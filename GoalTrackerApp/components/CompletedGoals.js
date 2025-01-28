@@ -34,8 +34,12 @@ export default CompletedGoalsModal;
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 16,
     justifyContent: 'center',
-    alignItems: 'center',
+  },
+  goalsContainer: {
+    flex: 5,
   },
 });
 
