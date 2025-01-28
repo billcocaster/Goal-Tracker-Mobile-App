@@ -10,6 +10,7 @@ function GoalItem(props) {
                 {text: 'Yes', style: 'destructive', onPress: props.onRemoveItem.bind(this, props.id)},
             ]);
     }
+
     return (
         <TouchableOpacity onPress={() => setShowButtons(!showButtons)}>
             <View style={styles.GoalItem}>
@@ -19,6 +20,11 @@ function GoalItem(props) {
                         <Button title='Delete goal'
                          onPress={confirmDeleteHandler} 
                         />
+                        {!props.done && (
+                            <Button title='Mark as done'
+                                onPress={props.onMarkAsCompleted.bind(this, props.id)} 
+                            />
+                        )}
                     </View>
                 }
             </View>
